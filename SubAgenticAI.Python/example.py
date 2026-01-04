@@ -3,7 +3,7 @@ Example demonstrating Cloud-Native Resource Governance in Python
 """
 
 import asyncio
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from subagentic_ai import (
     CloudResourceAllocationProfile,
     FrontLineAgent,
@@ -60,7 +60,7 @@ def main():
         current_memory_usage_bytes=512 * 1024 * 1024,  # 512 MB
         message_count=100,
         current_mission_cost=2.0,
-        timestamp=datetime.utcnow()
+        timestamp=datetime.now(timezone.utc)
     )
     fla.monitor_and_enforce("sa-001", metrics1)
     print("5. Monitoring: Resources within limits")
@@ -72,7 +72,7 @@ def main():
         current_memory_usage_bytes=950 * 1024 * 1024,  # 92.8% of limit
         message_count=460,  # 92% of limit
         current_mission_cost=4.7,  # 94% of limit
-        timestamp=datetime.utcnow()
+        timestamp=datetime.now(timezone.utc)
     )
     fla.monitor_and_enforce("sa-001", metrics2)
     print("6. Monitoring: Resources approaching limits (soft enforcement triggered)")

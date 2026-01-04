@@ -6,7 +6,7 @@ are approached or exceeded.
 """
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum, auto
 
 
@@ -27,4 +27,4 @@ class EnforcementAction:
     resource_type: str
     threshold_percentage: float
     terminated: bool
-    timestamp: datetime = field(default_factory=datetime.utcnow)
+    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))

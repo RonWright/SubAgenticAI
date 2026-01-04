@@ -6,7 +6,7 @@ It manages resource allocation, monitoring, and enforcement in cloud-native
 environments.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from threading import Lock
 from typing import Dict, List, Optional
 
@@ -56,7 +56,7 @@ class FrontLineAgent:
             self._active_sub_agents[sub_agent.id] = sub_agent
             self._metrics[sub_agent.id] = ResourceUsageMetrics(
                 sub_agent_id=sub_agent.id,
-                timestamp=datetime.utcnow()
+                timestamp=datetime.now(timezone.utc)
             )
             
             self._log_audit(

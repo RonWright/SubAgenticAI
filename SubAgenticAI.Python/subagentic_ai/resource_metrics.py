@@ -6,7 +6,7 @@ Used for monitoring and enforcement decisions.
 """
 
 from dataclasses import dataclass, field
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 
 @dataclass
@@ -14,7 +14,7 @@ class ResourceUsageMetrics:
     """Real-time resource consumption metrics for a SubAgent."""
     
     sub_agent_id: str
-    timestamp: datetime = field(default_factory=datetime.utcnow)
+    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     
     # Compute metrics
     current_cpu_usage: float = 0.0

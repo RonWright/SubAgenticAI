@@ -7,7 +7,7 @@ CloudResourceAllocationProfile.
 """
 
 from abc import ABC, abstractmethod
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum, auto
 from typing import Any
 
@@ -52,7 +52,7 @@ class SubAgent(ABC):
         self._id = agent_id
         self._mission_description = mission_description
         self._resource_profile = resource_profile
-        self._created_at = datetime.utcnow()
+        self._created_at = datetime.now(timezone.utc)
         self._status = SubAgentStatus.CREATED
         
     @property
