@@ -6,30 +6,32 @@ namespace SubAgenticAI.Core;
 /// </summary>
 public class TrustProfile
 {
+    private const int DefaultMinimumBrokerAgreement = 2;
+    
     /// <summary>
     /// Security Level for outbound information flow
     /// </summary>
-    public SecurityLevel SecurityLevel { get; set; }
+    public SecurityLevel SecurityLevel { get; init; }
     
     /// <summary>
     /// Required trust threshold for accepting inbound information
     /// </summary>
-    public TrustLevel RequiredTrustThreshold { get; set; }
+    public TrustLevel RequiredTrustThreshold { get; init; }
     
     /// <summary>
     /// Content Sharing Policy - set of trust brokers to use for evaluation
     /// </summary>
-    public List<ITrustBroker> TrustBrokers { get; set; }
+    public IReadOnlyList<ITrustBroker> TrustBrokers { get; init; }
     
     /// <summary>
     /// Minimum number of brokers that must agree for independent agreement
     /// </summary>
-    public int MinimumBrokerAgreement { get; set; }
+    public int MinimumBrokerAgreement { get; init; }
     
     /// <summary>
     /// Tolerance for convergence of broker evaluations (0.0 to 1.0)
     /// </summary>
-    public double AgreementTolerance { get; set; }
+    public double AgreementTolerance { get; init; }
     
     /// <summary>
     /// Creates a new trust profile
@@ -43,8 +45,8 @@ public class TrustProfile
     {
         SecurityLevel = securityLevel;
         RequiredTrustThreshold = requiredTrustThreshold;
-        TrustBrokers = trustBrokers ?? new List<ITrustBroker>();
-        MinimumBrokerAgreement = Math.Max(2, minimumBrokerAgreement);
+        TrustBrokers = (trustBrokers ?? new List<ITrustBroker>()).AsReadOnly();
+        MinimumBrokerAgreement = Math.Max(DefaultMinimumBrokerAgreement, minimumBrokerAgreement);
         AgreementTolerance = Math.Clamp(agreementTolerance, 0.0, 1.0);
     }
     

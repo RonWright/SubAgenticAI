@@ -6,6 +6,10 @@ namespace SubAgenticAI.Core;
 /// </summary>
 public class SimpleTrustBroker : ITrustBroker
 {
+    private const double MaliciousContentPenalty = 0.3;
+    private const double SuspiciousContentPenalty = 0.6;
+    private const double VerifiedContentBonus = 1.2;
+    
     public string BrokerId { get; }
     public string Name { get; }
     
@@ -40,13 +44,13 @@ public class SimpleTrustBroker : ITrustBroker
         
         // Reduce trust for suspicious patterns
         if (content.Contains("malicious", StringComparison.OrdinalIgnoreCase))
-            trustScore *= 0.3;
+            trustScore *= MaliciousContentPenalty;
         else if (content.Contains("suspicious", StringComparison.OrdinalIgnoreCase))
-            trustScore *= 0.6;
+            trustScore *= SuspiciousContentPenalty;
         
         // Increase trust for verified markers
         if (content.Contains("verified", StringComparison.OrdinalIgnoreCase))
-            trustScore = Math.Min(1.0, trustScore * 1.2);
+            trustScore = Math.Min(1.0, trustScore * VerifiedContentBonus);
         
         return Task.FromResult(Math.Clamp(trustScore, 0.0, 1.0));
     }

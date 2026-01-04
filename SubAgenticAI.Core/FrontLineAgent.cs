@@ -185,9 +185,6 @@ public class FrontLineAgent
             var result = await subAgent.ProcessTaskAsync(taskDetails);
             await subAgent.CompleteMissionAsync();
             
-            // Optionally retire short-lived SubAgents
-            // await RetireSubAgentAsync(subAgent.Id);
-            
             return result;
         }
         catch (Exception ex)

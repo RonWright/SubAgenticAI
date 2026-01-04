@@ -5,12 +5,12 @@ namespace SubAgenticAI.Core;
 /// </summary>
 public class CommunicationAuthorization
 {
-    public string FromAgentId { get; set; }
-    public string ToAgentId { get; set; }
-    public bool IsBidirectional { get; set; }
-    public List<string> AllowedDataScopes { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime? ExpiresAt { get; set; }
+    public string FromAgentId { get; init; }
+    public string ToAgentId { get; init; }
+    public bool IsBidirectional { get; init; }
+    public IReadOnlyList<string> AllowedDataScopes { get; init; }
+    public DateTime CreatedAt { get; init; }
+    public DateTime? ExpiresAt { get; init; }
     
     public CommunicationAuthorization(
         string fromAgentId, 
@@ -22,7 +22,7 @@ public class CommunicationAuthorization
         FromAgentId = fromAgentId;
         ToAgentId = toAgentId;
         IsBidirectional = isBidirectional;
-        AllowedDataScopes = allowedDataScopes ?? new List<string> { "*" };
+        AllowedDataScopes = (allowedDataScopes ?? new List<string> { "*" }).AsReadOnly();
         CreatedAt = DateTime.UtcNow;
         ExpiresAt = ttl.HasValue ? CreatedAt + ttl.Value : null;
     }

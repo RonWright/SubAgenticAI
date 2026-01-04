@@ -9,12 +9,12 @@ public class TrustLevel
     /// <summary>
     /// Sender Trust Level (TLₛ) - historical reliability and behavioral integrity of the sender
     /// </summary>
-    public double SenderTrust { get; set; }
+    public double SenderTrust { get; init; }
     
     /// <summary>
     /// Content Trust Level (TL꜀) - factual accuracy and provenance of the content
     /// </summary>
-    public double ContentTrust { get; set; }
+    public double ContentTrust { get; init; }
     
     /// <summary>
     /// Creates a new TrustLevel with specified sender and content trust values
