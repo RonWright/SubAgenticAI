@@ -41,7 +41,7 @@ Independence prevents:
 It ensures diversity of evaluation and prevents systemic compromise.
 
 ### How many Trust Brokers are needed?
-The SubAgenticAI architecture requires multiple brokers to independently agree. A single broker's evaluation is insufficient. Trust is granted only when multiple brokers independently evaluate and their evaluations converge within defined tolerances.
+The SubAgenticAI architecture requires multiple brokers to independently agree. A single broker's evaluation is insufficient. Trust is granted only when multiple brokers independently evaluate and their evaluations converge within defined tolerances (for example, if trust scores must be within 0.1 of each other on a 0-1 scale).
 
 ### Can Trust Brokers accept feedback?
 Yes, but it's optional and selective. A TB accepts feedback only from entities it independently trusts. This prevents trust poisoning and maintains evaluation integrity.
@@ -193,7 +193,7 @@ Yes, through its governance model:
 ## Implementation Questions
 
 ### Is the TM implemented in the SubAgenticAI codebase?
-No. The current C# implementation demonstrates the **SubAgenticAI architecture** (FLA, SubAgents, trust profiles), but the TM itself is described as a separate infrastructure layer. The implementation shows how external systems would **use** the TM, not the TM itself.
+No. The SubAgenticAI codebase demonstrates the **SubAgenticAI architecture** (FLA, SubAgents, trust profiles), but the TM itself is described as a separate infrastructure layer. The implementation shows how external systems would **use** the TM, not the TM itself.
 
 ### What would a real Trust Broker look like?
 A production TB would need:

@@ -15,7 +15,7 @@ The TM is built on the Unified Foundational Ontology, which provides micro-theor
 This foundation ensures that trust computations are consistent and discipline-agnostic.
 
 ### 2. **Dual-Level Trust Evaluation**
-The TM evaluates trust at two granularities:
+The TM evaluates trust at two granularity levels:
 
 #### Atomic Trust Level (TL(atom))
 - Smallest evaluable elements: claims, measurements, sentences, data points
